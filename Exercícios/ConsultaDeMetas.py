@@ -17,14 +17,19 @@ titulo_centralizado = titulo.center(tamanho)
 texto_dados = "DADOS ARMAZENADOS!"
 texto_dados_centralizado = texto_dados.center(tamanho)
 
+texto_decis = "-DIGITEO NÚMERO CORRESPONDENTE-"
+texto_decis_centralizado = texto_decis.center(tamanho)
+
 print(rosa + '$=' * 21 + normal)
 print(roxo + titulo_centralizado + normal)
 print(rosa + '$=' * 21 + normal)
 print('\n')
 
 # input de decisão
-decis = str(input(red + ' [?] - Deseja Limpar os dados atuais? [S/N] ' + normal)).upper().strip()
-if decis == 'S':
+print(texto_decis_centralizado)
+decis = int(input(yellow + ' [?] - Deseja fazer um novo registro? [1]\n'
+                  ' [?] - Deseja Limpar os Dados atuais? [2] \n --> ' + normal))
+if decis == 2:
     confirmacao = str(input(red + ' [!] - Confirme a exclusao dos dados [S/N] ' + normal)).upper().strip()
     if confirmacao == 'S':
         with open("dados.txt", "w") as dados:
@@ -42,8 +47,8 @@ if decis == 'S':
         sys.exit()
     elif confirmacao != 'S':
         print('\n' + red + ' [!] - PROCESSO INTERROMPIDO')
-
-else:
+elif decis == 1:
+    print('\n')
     print(green + ' [!] - SISTEMA DE REGISTRO\n' + normal)
     # Inputs de dados
     data = str(input(green + ' [?] - Informe a data [dia/mês/ano]: '))
