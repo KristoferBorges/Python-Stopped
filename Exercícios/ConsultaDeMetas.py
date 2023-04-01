@@ -12,6 +12,7 @@ rosa = '\033[95m'
 
 titulo = "CONSULTA DE METAS"
 tamanho = 43
+tamanho_lista = 84
 titulo_centralizado = titulo.center(tamanho)
 
 texto_dados = "DADOS ARMAZENADOS!"
@@ -29,6 +30,10 @@ texto_PERFUMARIA_centralizado = texto_PERFUMARIA.center(tamanho)
 texto_DERMO = roxo + "-LISTA DE DERMO-" + normal
 texto_DERMO_centralizado = texto_DERMO.center(tamanho)
 
+texto_RDMarcas_lista_centralizado = texto_RDMarcas.center(tamanho_lista)
+texto_PERFUMARIA_lista_centralizado = texto_PERFUMARIA.center(tamanho_lista)
+texto_DERMO_lista_centralizado = texto_DERMO.center(tamanho_lista)
+
 print(rosa + '$=' * 21 + normal)
 print(roxo + titulo_centralizado + normal)
 print(rosa + '$=' * 21 + normal)
@@ -36,9 +41,10 @@ print('\n')
 
 # input de decisão
 print(texto_decis_centralizado)
-decis_registro_exclusao = int(input(yellow + ' [?] - Deseja fazer um novo registro? [1]\n'
-                                             ' [?] - Deseja Limpar os Dados atuais? [2]\n --> ' + normal))
-if decis_registro_exclusao == 2:
+decis_registro_exclusao_consulta = int(input(yellow + ' [?] - NOVOS REGISTROS [1]\n'
+                                                      ' [?] - LIMPAR DADOS ATUAIS [2]\n'
+                                                      ' [?] - CONSULTAR LISTAS ATUAIS [3]\n --> ' + normal))
+if decis_registro_exclusao_consulta == 2:
     print('\n')
     print(red + ' [!] - SISTEMA DE EXCLUSÃO\n' + normal)
     print(texto_decis_centralizado)
@@ -52,8 +58,7 @@ if decis_registro_exclusao == 2:
         if confirmacao == 'S':
             # Exclusão RD MARCAS
             with open("listaRDMARCAS.txt", "w") as listaRDMARCAS:
-                listaRDMARCAS.write("DATA---------------META-------------META.AC---------VENDAS----------VENDAS.AC-----"
-                                    "P---------\n")
+                listaRDMARCAS.write("DATA-------- META-------- META.AC----- VENDAS----- VENDAS.AC----- P---------\n")
             with open("storage/metaAcumuladaRDMARCAS.txt", "w") as metaAcumuladaRDMARCAS:
                 metaAcumuladaRDMARCAS.write("")
             with open("storage/vendaAcumuladaRDMARCAS.txt", "w") as vendaAcumuladaRDMARCAS:
@@ -72,8 +77,7 @@ if decis_registro_exclusao == 2:
         confirmacao = str(input(red + ' [!] - Confirme a exclusao dos dados [S/N] ' + normal)).upper().strip()
         if confirmacao == 'S':
             with open("listaPERFUMARIA.txt", "w") as listaPERFUMARIA:
-                listaPERFUMARIA.write("DATA---------------META-------------META.AC---------VENDAS----------VENDAS.AC--"
-                                      "---P---------\n")
+                listaPERFUMARIA.write("DATA-------- META-------- META.AC----- VENDAS----- VENDAS.AC----- P---------\n")
             with open("storage/metaAcumuladaPERFUMARIA.txt", "w") as metaAcumuladaPERFUMARIA:
                 metaAcumuladaPERFUMARIA.write("")
             with open("storage/vendaAcumuladaPERFUMARIA.txt", "w") as vendaAcumuladaPERFUMARIA:
@@ -92,8 +96,7 @@ if decis_registro_exclusao == 2:
         confirmacao = str(input(red + ' [!] - Confirme a exclusao dos dados [S/N] ' + normal)).upper().strip()
         if confirmacao == 'S':
             with open("listaDERMO.txt", "w") as listaDERMO:
-                listaDERMO.write("DATA---------------META-------------META.AC---------VENDAS----------VENDAS.AC--"
-                                 "---P---------\n")
+                listaDERMO.write("DATA-------- META-------- META.AC----- VENDAS----- VENDAS.AC----- P---------\n")
             with open("storage/metaAcumuladaDERMO.txt", "w") as metaAcumuladaDERMO:
                 metaAcumuladaDERMO.write("")
             with open("storage/vendaAcumuladaDERMO.txt", "w") as vendaAcumuladaDERMO:
@@ -107,14 +110,14 @@ if decis_registro_exclusao == 2:
             sys.exit()
         elif confirmacao != 'S':
             print('\n' + red + ' [!] - PROCESSO INTERROMPIDO')
-elif decis_registro_exclusao == 1:
+elif decis_registro_exclusao_consulta == 1:
     print('\n')
     print(green + ' [!] - SISTEMA DE REGISTRO\n' + normal)
 
     print(texto_decis_centralizado)
     decis_listas = int(input(yellow + ' [?] - Lista de RD Marcas - [1]\n'
                                       ' [?] - Lista de Perfumaria - [2]\n'
-                                      ' [?] - Lista de Dermo [3]\n'
+                                      ' [?] - Lista de Dermo - [3]\n'
                                       ' --> ' + normal))
     if decis_listas == 1:
         # Inputs de dados - RD Marcas
@@ -160,8 +163,8 @@ elif decis_registro_exclusao == 1:
         print(rosa + '=-' * 21 + normal)
         # Inserção de dados
         with open("listaRDMARCAS.txt", "a") as listaRDMARCAS:
-            listaRDMARCAS.write(f"{data}  |  R${metaDia:.2f}  |  R${metaAcRDMARCAS:.2f}  |  R${vendaDia:.2f}  |"
-                                f"  R${vendaAcRDMARCAS:.2f}  |  "
+            listaRDMARCAS.write(f"{data} | R${metaDia:.2f} | R${metaAcRDMARCAS:.2f} | R${vendaDia:.2f} |"
+                                f" R${vendaAcRDMARCAS:.2f} | "
                                 f"{porcentagemRDMARCAS:.2f}%\n")
     elif decis_listas == 2:
         # Inputs de dados - RD Perfumaria
@@ -207,8 +210,8 @@ elif decis_registro_exclusao == 1:
         print(rosa + '=-' * 21 + normal)
         # Inserção de dados
         with open("listaPERFUMARIA.txt", "a") as listaPERFUMARIA:
-            listaPERFUMARIA.write(f"{data}  |  R${metaDia:.2f}  |  R${metaAcPERFUMARIA:.2f}  |  R${vendaDia:.2f}  |"
-                                  f"  R${vendaAcPERFUMARIA:.2f}  |  "
+            listaPERFUMARIA.write(f"{data} | R${metaDia:.2f} | R${metaAcPERFUMARIA:.2f} | R${vendaDia:.2f} |"
+                                  f" R${vendaAcPERFUMARIA:.2f} | "
                                   f"{porcentagemPERFUMARIA:.2f}%\n")
     elif decis_listas == 3:
         # Inputs de dados - RD Dermo
@@ -254,6 +257,61 @@ elif decis_registro_exclusao == 1:
         print(rosa + '=-' * 21 + normal)
         # Inserção de dados
         with open("listaDERMO.txt", "a") as listaDERMO:
-            listaDERMO.write(f"{data}  |  R${metaDia:.2f}  |  R${metaAcDERMO:.2f}  |  R${vendaDia:.2f}  |"
-                             f"  R${vendaAcDERMO:.2f}  |  "
+            listaDERMO.write(f"{data} | R${metaDia:.2f} | R${metaAcDERMO:.2f} | R${vendaDia:.2f} |"
+                             f" R${vendaAcDERMO:.2f} | "
                              f"{porcentagemDERMO:.2f}%\n")
+elif decis_registro_exclusao_consulta == 3:
+    print('\n')
+    print(texto_decis_centralizado)
+    decis_consulta = int(input((yellow + " [?] - CONSULTAR LISTA DE RD MARCAS [1]\n"
+                                         " [?] - CONSULTAR LISTA DE PERFUMARIA [2]\n"
+                                         " [?] - CONSULTAR LISTA DE DERMO [3]\n"
+                                         " [?] - CONSULTAR TODAS AS LISTAS [4]\n --> " + normal)))
+    if decis_consulta == 1:
+        print('¨¨' * 38)
+        print(texto_RDMarcas_lista_centralizado)
+        with open("listaRDMARCAS.txt", "r") as listaRDMARCAS:
+            linhas3 = listaRDMARCAS.readlines()
+        for linha in linhas3:
+            print(green + f'{linha.strip()}' + normal)
+        print('¨¨' * 38)
+    elif decis_consulta == 2:
+        print('¨¨' * 38)
+        print(texto_PERFUMARIA_lista_centralizado)
+        with open("listaPERFUMARIA.txt", "r") as listaPERFUMARIA:
+            linhas3 = listaPERFUMARIA.readlines()
+        for linha in linhas3:
+            print(green + f'{linha.strip()}' + normal)
+        print('¨¨' * 38)
+    elif decis_consulta == 3:
+        print('¨¨' * 38)
+        print(texto_DERMO_lista_centralizado)
+        with open("listaDERMO.txt", "r") as listaDERMO:
+            linhas3 = listaDERMO.readlines()
+        for linha in linhas3:
+            print(green + f'{linha.strip()}' + normal)
+        print('¨¨' * 38)
+    elif decis_consulta == 4:
+        print('¨¨' * 38)
+        print('¨¨' * 38)
+        print(texto_RDMarcas_lista_centralizado)
+        with open("listaRDMARCAS.txt", "r") as listaRDMARCAS:
+            linhas3 = listaRDMARCAS.readlines()
+        for linha in linhas3:
+            print(green + f'{linha.strip()}' + normal)
+        print('¨¨' * 38)
+        print('¨¨' * 38)
+        print(texto_PERFUMARIA_lista_centralizado)
+        with open("listaPERFUMARIA.txt", "r") as listaPERFUMARIA:
+            linhas3 = listaPERFUMARIA.readlines()
+        for linha in linhas3:
+            print(green + f'{linha.strip()}' + normal)
+        print('¨¨' * 38)
+        print('¨¨' * 38)
+        print(texto_DERMO_lista_centralizado)
+        with open("listaDERMO.txt", "r") as listaDERMO:
+            linhas3 = listaDERMO.readlines()
+        for linha in linhas3:
+            print(green + f'{linha.strip()}' + normal)
+        print('¨¨' * 38)
+        print('¨¨' * 38)
