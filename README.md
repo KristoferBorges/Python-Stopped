@@ -11,4 +11,4 @@ Meu objetivo é demonstrar publicamente o repositório em questão, contendo min
 No repositório, tem diversos "Desafios", cada um deles tendo algum propósito. Acredito que qualquer desenvolvedor poderá entender o propósito de cada um assim que os ver. Eu não coloquei o propósito de cada um no início, pois não contava que se tornaria público. Ainda irei arrumar e organizar conforme o tempo!
 
 # Responsável
-BY : Kristofer S. Borges
+BY: Kristofer S. Borges
